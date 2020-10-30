@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SampleApp.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skiacheck="clr-namespace:SkiaCheck;assembly=SkiaCheck">
+
+    <StackLayout>
+        <skiacheck:Checkbox
+            CheckmarkColor="White"
+            FillColor="#FF5151"
+            HorizontalOptions="CenterAndExpand"
+            IsChecked="True"
+            OutlineColor="Black"
+            OutlineWidth="4"
+            VerticalOptions="CenterAndExpand" />
+    </StackLayout>
+
+</ContentPage>
