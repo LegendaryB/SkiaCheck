@@ -7,12 +7,10 @@ using Xamarin.Forms;
 
 namespace SkiaCheck
 {
-    public sealed partial class Checkbox : SKCanvasView,
+    public class Checkbox : SKCanvasView,
         IRenderContext,
         IDisposable
     {
-        private const double SIZE = 24.0;
-
         private SKPaint _backgroundPaint;
         private SKPaint _checkmarkPaint;
         private SKPaint _outlinePaint;
@@ -21,9 +19,79 @@ namespace SkiaCheck
 
         private readonly TapGestureRecognizer _tapRecognizer;
 
+        public static readonly BindableProperty IsCheckedProperty =
+            BindableProperty.Create(
+                nameof(IsChecked),
+                typeof(bool),
+                typeof(Checkbox),
+                propertyChanged: OnVisualRelevantPropertyChanged);
+
+        public static readonly BindableProperty CheckmarkColorProperty =
+            BindableProperty.Create(
+                nameof(CheckmarkColor),
+                typeof(Color),
+                typeof(Checkbox),
+                propertyChanged: OnVisualRelevantPropertyChanged);
+
+        public static readonly BindableProperty FillColorProperty =
+            BindableProperty.Create(
+                nameof(FillColor),
+                typeof(Color),
+                typeof(Checkbox),
+                propertyChanged: OnVisualRelevantPropertyChanged);
+
+        public static readonly BindableProperty OutlineColorProperty =
+            BindableProperty.Create(
+                nameof(OutlineColor),
+                typeof(Color),
+                typeof(Checkbox),
+                propertyChanged: OnVisualRelevantPropertyChanged);
+
+        public static readonly BindableProperty OutlineWidthProperty =
+            BindableProperty.Create(
+                nameof(OutlineWidth),
+                typeof(float),
+                typeof(Checkbox),
+                4.0f,
+                propertyChanged: OnVisualRelevantPropertyChanged);
+
+
+
+        public bool IsChecked
+        {
+            get => (bool)GetValue(IsCheckedProperty);
+            set => SetValue(IsCheckedProperty, value);
+        }
+
+        public Color CheckmarkColor
+        {
+            get => (Color)GetValue(CheckmarkColorProperty);
+            set => SetValue(CheckmarkColorProperty, value);
+        }
+
+        public Color FillColor
+        {
+            get => (Color)GetValue(FillColorProperty);
+            set => SetValue(FillColorProperty, value);
+        }
+
+        public Color OutlineColor
+        {
+            get => (Color)GetValue(OutlineColorProperty);
+            set => SetValue(OutlineColorProperty, value);
+        }
+
+        public float OutlineWidth
+        {
+            get => (float)GetValue(OutlineWidthProperty);
+            set => SetValue(OutlineWidthProperty, value);
+        }
+
+
         public Checkbox()
         {
-            WidthRequest = HeightRequest = SIZE;
+            WidthRequest = 24;
+            HeightRequest = 24;
 
             _platformRenderer = GetPlatformRenderer();
 
@@ -48,7 +116,7 @@ namespace SkiaCheck
                 DrawCheckmarkLayer(@event);
 
                 return;
-            }                
+            }
                 
             DrawOutlineLayer(@event);
         }
@@ -95,6 +163,50 @@ namespace SkiaCheck
                 return new iOS.PlatformRenderer();
 
             return new Android.PlatformRenderer();
+        }
+
+        private static void OnVisualRelevantPropertyChanged(
+            BindableObject bindable,
+            object oldValue,
+            object newValue)
+        {
+            if (bindable is Checkbox @this && oldValue != newValue)
+            {
+                @this.InvalidateSurface();
+            }
+        }
+
+        private SKPaint CreateBackgroundPaint()
+        {
+            return new SKPaint
+            {
+                Style = SKPaintStyle.Fill,
+                StrokeWidth = OutlineWidth,
+                StrokeJoin = SKStrokeJoin.Round,
+                IsAntialias = true
+            };
+        }
+
+        private SKPaint CreateCheckmarkPaint()
+        {
+            return new SKPaint
+            {
+                Style = SKPaintStyle.Stroke,
+                StrokeWidth = OutlineWidth,
+                IsAntialias = true,
+                StrokeCap = SKStrokeCap.Butt
+            };
+        }
+
+        private SKPaint CreateOutlinePaint()
+        {
+            return new SKPaint
+            {
+                Style = SKPaintStyle.Stroke,
+                StrokeWidth = OutlineWidth,
+                StrokeJoin = SKStrokeJoin.Round,
+                IsAntialias = true
+            };
         }
 
         public void Dispose()
