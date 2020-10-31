@@ -13,22 +13,34 @@ namespace SkiaCheck
     {
         private const double SIZE = 24.0;
 
-        private readonly IPlatformRenderer _platformRenderer;
-
         private SKPaint _backgroundPaint;
         private SKPaint _checkmarkPaint;
-        private SKPaint _outlinePaint;                
+        private SKPaint _outlinePaint;
+
+        private readonly IPlatformRenderer _platformRenderer;
+
+        private readonly TapGestureRecognizer _tapRecognizer;
 
         public Checkbox()
         {
             WidthRequest = HeightRequest = SIZE;
 
             _platformRenderer = GetPlatformRenderer();
+
+            _tapRecognizer = new TapGestureRecognizer
+            {
+                Command = new Command(() =>
+                    IsChecked = !IsChecked)
+            };
+
+            GestureRecognizers.Add(_tapRecognizer);
         }
 
         protected override void OnPaintSurface(SKPaintSurfaceEventArgs @event)
         {
             base.OnPaintSurface(@event);
+
+            @event.Surface.Canvas.Clear();
 
             if (IsChecked)
             {
@@ -90,6 +102,8 @@ namespace SkiaCheck
             _backgroundPaint?.Dispose();
             _checkmarkPaint?.Dispose();
             _outlinePaint?.Dispose();
+
+            GestureRecognizers?.Clear();
         }
     }
 }

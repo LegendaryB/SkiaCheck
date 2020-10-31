@@ -10,8 +10,8 @@
             CheckmarkColor="White"
             FillColor="#FF5151"
             HorizontalOptions="CenterAndExpand"
-            IsChecked="True"
-            OutlineColor="Black"
+            IsChecked="False"
+            OutlineColor="#FF5151"
             OutlineWidth="4"
             VerticalOptions="CenterAndExpand" />
     </StackLayout>

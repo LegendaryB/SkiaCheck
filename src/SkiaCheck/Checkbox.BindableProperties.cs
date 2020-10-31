@@ -12,49 +12,42 @@ namespace SkiaCheck
         IRenderContext,
         IDisposable
     {
-        public static readonly BindableProperty ToggleCommandProperty =
-            BindableProperty.Create(
-                nameof(ToggleCommand),
-                typeof(ICommand),
-                typeof(Checkbox),
-                null);
-
         public static readonly BindableProperty IsCheckedProperty =
             BindableProperty.Create(
                 nameof(IsChecked),
                 typeof(bool),
-                typeof(Checkbox));
+                typeof(Checkbox),
+                propertyChanged: OnVisualRelevantPropertyChanged);
 
         public static readonly BindableProperty CheckmarkColorProperty =
             BindableProperty.Create(
                 nameof(CheckmarkColor),
                 typeof(Color),
-                typeof(Checkbox));
+                typeof(Checkbox),
+                propertyChanged: OnVisualRelevantPropertyChanged);
 
         public static readonly BindableProperty FillColorProperty =
             BindableProperty.Create(
                 nameof(FillColor),
                 typeof(Color),
-                typeof(Checkbox));
+                typeof(Checkbox),
+                propertyChanged: OnVisualRelevantPropertyChanged);
 
         public static readonly BindableProperty OutlineColorProperty =
             BindableProperty.Create(
                 nameof(OutlineColor),
                 typeof(Color),
-                typeof(Checkbox));
+                typeof(Checkbox),
+                propertyChanged: OnVisualRelevantPropertyChanged);
 
         public static readonly BindableProperty OutlineWidthProperty =
             BindableProperty.Create(
                 nameof(OutlineWidth),
                 typeof(float),
                 typeof(Checkbox),
-                4.0f);
+                4.0f,
+                propertyChanged: OnVisualRelevantPropertyChanged);
 
-        public ICommand ToggleCommand
-        {
-            get => (ICommand)GetValue(ToggleCommandProperty);
-            set => SetValue(ToggleCommandProperty, value);
-        }
 
         public bool IsChecked
         {
@@ -84,6 +77,17 @@ namespace SkiaCheck
         {
             get => (float)GetValue(OutlineWidthProperty);
             set => SetValue(OutlineWidthProperty, value);
-        }       
+        }
+
+        protected static void OnVisualRelevantPropertyChanged(
+            BindableObject bindable,
+            object oldValue,
+            object newValue)
+        {
+            if (bindable is Checkbox @this && oldValue != newValue)
+            {
+                @this.InvalidateSurface();
+            }
+        }
     }
 }
