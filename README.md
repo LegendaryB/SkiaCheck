@@ -1,5 +1,17 @@
-# SkiaCheck
+﻿<h1 align="center">SkiaCheck</h1>
+<div align="center">
+
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-grammas-recipe.svg)](https://forthebadge.com)
+
+[![GitHub license](https://img.shields.io/github/license/LegendaryB/SkiaCheck.svg?longCache=true&style=flat-square)](https://github.com/LegendaryB/SkiaCheck/blob/master/LICENSE.md)
+[![Nuget](https://img.shields.io/nuget/v/SkiaCheck.svg?style=flat-square)](https://www.nuget.org/packages/SkiaCheck/)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://paypal.me/alphadaniel)
+
 A checkbox implementation for Xamarin.Forms made with the awesome [SkiaSharp](https://github.com/mono/SkiaSharp) library.
+
+<sub>Built with ❤︎ by Daniel Belz</sub>
+</div><br>
 
 ## What is supported?
 You can modify the entire appearance of the checkbox. You can set the checkmark color, the background / fill color and also the box color. A feature which is unfortunately missing
