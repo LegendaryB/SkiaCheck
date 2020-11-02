@@ -5,15 +5,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:skiacheck="clr-namespace:SkiaCheck;assembly=SkiaCheck">
 
-    <StackLayout>
+    <StackLayout Padding="40">
+
+        <StackLayout Orientation="Horizontal">
+
         <skiacheck:Checkbox
             CheckmarkColor="White"
-            FillColor="Yellow"
-            HorizontalOptions="CenterAndExpand"
+            FillColor="Green"
             IsChecked="False"
             OutlineColor="Black"
-            OutlineWidth="4"
-            VerticalOptions="CenterAndExpand" />
+            OutlineWidth="4" />
+
+            <Label Text="Check me!" VerticalTextAlignment="Center"/>
+
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>
