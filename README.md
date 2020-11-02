@@ -14,9 +14,9 @@ Currently the Android and iOS platform is supported. I don't plan to support UWP
 ## Contributions
 
 __Contributions are always welcome!__  
-When you send us a pull request with changes, improvements or bugfixes please make sure to use our pull request template. 
+When you send me a pull request with changes, improvements or bugfixes please make sure to use the pull request template. 
 
-We want to have all information regarding the pull request at a glance.
+I want to have all information regarding the pull request at a glance.
 
 ## License
 
