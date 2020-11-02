@@ -1,8 +1,11 @@
 # SkiaCheck
-Checkbox implemented for Xamarin.Forms with SkiaSharp
+A checkbox implementation for use in Xamarin.Forms made possible by the awesome [SkiaSharp](https://github.com/mono/SkiaSharp) library.
 
-* Contributions
-* License
+## How can I use it?
+Just take a look at the [MainPage.xaml](https://github.com/LegendaryB/SkiaCheck/blob/master/src/SampleApp/SampleApp/MainPage.xaml) of the sample app.
+
+## Platform support
+Currently the Android and iOS platform is supported. I don't plan to support UWP. But I would accept PR including it.
 
 ## Contributions
 
