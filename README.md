@@ -1,10 +1,14 @@
 # SkiaCheck
-A checkbox implementation for use in Xamarin.Forms made possible by the awesome [SkiaSharp](https://github.com/mono/SkiaSharp) library.
+A checkbox implementation for Xamarin.Forms made with the awesome [SkiaSharp](https://github.com/mono/SkiaSharp) library.
 
-## How can I use it?
-Just take a look at the [MainPage.xaml](https://github.com/LegendaryB/SkiaCheck/blob/master/src/SampleApp/SampleApp/MainPage.xaml) of the sample app.
+## What is supported?
+You can modify the entire appearance of the checkbox. You can set the checkmark color, the background / fill color and also the box color. A feature which is unfortunately missing
+from the official Xamarin.Forms checkbox. 
+Other than that you can also define the width of the outline and of course you can bind easily to the IsChecked property.
 
-## Platform support
+For a sample just take a look at the [MainPage.xaml](https://github.com/LegendaryB/SkiaCheck/blob/master/src/SampleApp/SampleApp/MainPage.xaml) file located in the SampleApp folder.
+
+### Platform support
 Currently the Android and iOS platform is supported. I don't plan to support UWP. But I would accept PR including it.
 
 ## Contributions
